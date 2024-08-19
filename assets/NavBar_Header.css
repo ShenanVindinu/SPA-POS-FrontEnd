@@ -1,0 +1,24 @@
+#navbar-logo {
+    width: 150px;
+    height: 55px;
+    position: relative;
+    filter: grayscale(100%);
+}
+
+.navbar {
+    background-color: #212529;
+}
+
+.nav-link {
+    color: white;
+}
+
+#SignupButtonH > a > i {
+    padding: 5px;
+    color: white;
+}
+
+#LogoutButtonH > a > i {
+    padding: 5px;
+    color: white;
+}
