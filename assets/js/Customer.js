@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
     $("#SaveConfirm").click(function () {
-        event.preventDefault();
 
         let CusName = $("#CustomerNameField").val();
         let CusAdress = $("#CustomerAddressField").val();
