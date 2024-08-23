@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#SaveConfirm").click(function () {
+    $("#CusSaveBt").click(function () {
 
         let CusName = $("#CustomerNameField").val();
         let CusAdress = $("#CustomerAddressField").val();
@@ -10,11 +10,15 @@ $(document).ready(function () {
         console.log(CusAdress);
         console.log(CusSalary);
 
-        const customerJson = {
+        const customerData = {
             name: CusName,
             address: CusAdress,
             salary: CusSalary
         };
+
+        console.log(customerData);
+        const customerJson = JSON.stringify(customerData);
+        console.log(customerJson);
 
         $.ajax({
             url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
