@@ -235,10 +235,10 @@
                 <div class="d-flex ">
                     <div class="card-body col-12">
 
-                        <div class="mb-3 col-5">
+                        <!-- <div class="mb-3 col-5">
                             <label for="ItemCodeField" class="form-label">Item ID</label>
                             <input type="text" class="form-control" id="ItemCodeField" placeholder="P001">
-                        </div>
+                        </div> -->
 
                         <div class="mb-3 col-5">
                             <label for="ItemNameField" class="form-label">Item Name</label>
@@ -257,8 +257,7 @@
 
                         <div class="container mt-4 mb-3" style="margin: 0; padding: 0">
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                        data-bs-target="#NewItemModal">Save
+                                <button type="button" class="btn btn-info" id="ItemSave">Save
                                 </button>
                                 <button type="button" class="btn btn-danger" id="deleteItem">Delete</button>
                                 <button type="button" class="btn btn-info" id="updateItem">Update</button>
@@ -562,6 +561,7 @@
         crossorigin="anonymous"></script>
 <script src="assets/js/crud-bootstrap.js"></script>
 <script type="module" src="assets/js/Customer.js"></script>
+<script type="module" src="assets/js/Item.js"></script>
 
 
 </body>
