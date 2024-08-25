@@ -33,18 +33,21 @@ $(document).ready(function () {
             }            
         });
 
-        $.ajax({
-            url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
-            type: "GET",
-            headers: {"Content-Type": "application/json"},
-            success: (res) => {
-                console.log(JSON.stringify(res));
-                populateCustomerTable(res);
-            },
-            error: (res) => {
-                console.error(res);
-            }            
-        });
+        setTimeout(function() {
+            $.ajax({
+                url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
+                type: "GET",
+                headers: {"Content-Type": "application/json"},
+                success: (res) => {
+                    console.log(JSON.stringify(res));
+                    populateCustomerTable(res);
+                },
+                error: (res) => {
+                    console.error(res);
+                }            
+            });
+          }, 1000);
+        
 
         function populateCustomerTable(customers) {
             const $tableBody = $('#customerTableBody');
