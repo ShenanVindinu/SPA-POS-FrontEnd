@@ -27,26 +27,23 @@ $(document).ready(function() {
             Headers: {"Content-Type":"application/json"},
             success: (res) => {
                 console.log(JSON.stringify(res));
+                $.ajax({
+                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
+                    type: "GET",
+                    headers: {"Content-Type": "application/json"},
+                    success: (res) => {
+                        console.log(JSON.stringify(res));
+                        populateItemTable(res);
+                    },
+                    error: (res) => {
+                        console.error(res);
+                    }            
+                });
             },
             error: (res) => {
                 console.log(res);
             }
         });
-
-        setTimeout(function() {
-            $.ajax({
-                url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
-                type: "GET",
-                headers: {"Content-Type": "application/json"},
-                success: (res) => {
-                    console.log(JSON.stringify(res));
-                    populateItemTable(res);
-                },
-                error: (res) => {
-                    console.error(res);
-                }            
-            });
-          }, 1000);
         
 
         function populateItemTable(items) {
