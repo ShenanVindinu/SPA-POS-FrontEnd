@@ -97,6 +97,12 @@ $(document).ready(function () {
             });
         }
     }
+
+    $("#CustomerClearBt").click(function() {
+        let CusName = $("#CustomerNameField").val("");
+        let CusAdress = $("#CustomerAddressField").val("");
+        let CusSalary = $("#CustomerSalaryField").val("");
+    });
     
 
 });
