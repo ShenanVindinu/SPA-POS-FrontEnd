@@ -73,6 +73,54 @@ $(document).ready(function () {
             }
         });
     });
+
+    $("#CustomerUpdateButton").click(function () {
+        let CusName = $("#CustomerNameField").val();
+        let CusAddress = $("#CustomerAddressField").val();
+        let CusSalary = $("#CustomerSalaryField").val();
+    
+        console.log(CusName);
+        console.log(CusAddress);
+        console.log(CusSalary);
+    
+        const customerData = {
+            name: CusName,
+            address: CusAddress,
+            salary: CusSalary
+        };
+    
+        console.log(customerData);
+        const customerJson = JSON.stringify(customerData);
+        console.log(customerJson);
+    
+        
+        const customerName = CusName; 
+    
+        $.ajax({
+            url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
+            type: "PUT",
+            data: customerJson,
+            headers: {"Content-Type": "application/json"},
+            success: (res) => {
+                console.log('PUT Success:',JSON.stringify(res));
+                $.ajax({
+                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
+                    type: "GET",
+                    headers: {"Content-Type": "application/json"},
+                    success: (res) => {
+                        console.log(JSON.stringify(res));
+                        populateCustomerTable(res);
+                    },
+                    error: (res) => {
+                        console.error(res);
+                    }            
+                });
+            },
+            error: (res) => {
+                console.error(res);
+            }            
+        });
+    });
     
     function populateCustomerTable(customers) {
         const $tableBody = $('#customerTableBody');
@@ -103,6 +151,8 @@ $(document).ready(function () {
         let CusAdress = $("#CustomerAddressField").val("");
         let CusSalary = $("#CustomerSalaryField").val("");
     });
+
+    
     
 
 });
