@@ -76,6 +76,53 @@ $(document).ready(function() {
         });
     });
 
+    $("#updateItem").click(function () {
+        
+        let itemName = $("#ItemNameField").val();
+        let itemQTY = $("#ItemQTYField").val();
+        let itemPrice = $("#ItemPriceField").val();
+
+        console.log(itemName);
+        console.log(itemQTY);
+        console.log(itemPrice);
+
+        const itemData = {
+            name: itemName,
+            qty: itemQTY,
+            price: itemPrice
+        };
+
+        console.log(itemData);
+        const itemJson = JSON.stringify(itemData);
+        console.log(itemJson);
+       
+    
+        $.ajax({
+            url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
+            type: "PUT",
+            data: itemJson,
+            headers: {"Content-Type": "application/json"},
+            success: (res) => {
+                console.log('PUT Success:',JSON.stringify(res));
+                $.ajax({
+                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
+                    type: "GET",
+                    headers: {"Content-Type": "application/json"},
+                    success: (res) => {
+                        console.log(JSON.stringify(res));
+                        populateItemTable(res);
+                    },
+                    error: (res) => {
+                        console.error(res);
+                    }            
+                });
+            },
+            error: (res) => {
+                console.error(res);
+            }            
+        });
+    });
+
     function populateItemTable(items) {
         const $tableBody = $('#ItemTableBody');
         $tableBody.empty(); 
