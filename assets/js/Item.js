@@ -67,4 +67,10 @@ $(document).ready(function() {
 
     });
 
+    $("#clearItem").click(function () {
+        let ItemName = $("#ItemNameField").val("");
+        let ItemQTY = $("#ItemQTYField").val("");
+        let ItemPrice = $("#ItemPriceField").val("");
+    });
+
 });
