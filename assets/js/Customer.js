@@ -21,14 +21,14 @@ $(document).ready(function () {
         console.log(customerJson);
 
         $.ajax({
-            url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
+            url: "http://localhost:8080/POS_BackEnd/api/v1/customer",
             type: "POST",
             data: customerJson,
             headers: {"Content-Type": "application/json"},
             success: (res) => {
                 console.log(JSON.stringify(res));
                 $.ajax({
-                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
+                    url: "http://localhost:8080/POS_BackEnd/api/v1/customer",
                     type: "GET",
                     headers: {"Content-Type": "application/json"},
                     success: (res) => {
