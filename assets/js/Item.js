@@ -57,7 +57,8 @@ $(document).ready(function() {
     });
 
     $("#updateItem").click(function () {
-        
+
+        let itemCode = $("#ItemCodeField").val();
         let itemName = $("#ItemNameField").val();
         let itemQTY = $("#ItemQTYField").val();
         let itemPrice = $("#ItemPriceField").val();
@@ -78,7 +79,7 @@ $(document).ready(function() {
        
     
         $.ajax({
-            url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
+            url: "http://localhost:8080/POS_BackEnd/api/v1/item/" + itemCode,
             type: "PUT",
             data: itemJson,
             headers: {"Content-Type": "application/json"},
