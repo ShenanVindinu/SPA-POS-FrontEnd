@@ -48,15 +48,15 @@ $(document).ready(function () {
 
     $("#CustomerDeleteButton").click(function() {
 
-        let CusName = $("#CustomerNameField").val();
+        let cusId = $("#CustomerIDField").val();
     
         $.ajax({
-            url: `http://localhost:8080/POS_BackEnd__JavaEE/Customer?name=${encodeURIComponent(CusName)}`,
+            url: 'http://localhost:8080/POS_BackEnd/api/v1/customer/' + cusId,
             type: "DELETE",
             success: (res) => {
                 console.log("Delete Response:", JSON.stringify(res));
                 $.ajax({
-                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
+                    url: "http://localhost:8080/POS_BackEnd/api/v1/customer",
                     type: "GET",
                     headers: {"Content-Type": "application/json"},
                     success: (res) => {
@@ -147,9 +147,10 @@ $(document).ready(function () {
     }
 
     $("#CustomerClearBt").click(function() {
-        let CusName = $("#CustomerNameField").val("");
-        let CusAdress = $("#CustomerAddressField").val("");
-        let CusSalary = $("#CustomerSalaryField").val("");
+        $("#CustomerNameField").val("");
+        $("#CustomerAddressField").val("");
+        $("#CustomerSalaryField").val("");
+        $("#CustomerIDField").val("");
     });
 
     
