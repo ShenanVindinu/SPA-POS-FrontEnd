@@ -26,7 +26,7 @@ $(document).ready(function() {
             url: "http://localhost:8080/POS_BackEnd/api/v1/item",
             type: "POST",
             data: itemJson,
-            Headers: {"Content-Type":"application/json"},
+            headers: {"Content-Type":"application/json"},
             success: (res) => {
                 console.log(JSON.stringify(res));
                 getAllItems();
@@ -41,10 +41,10 @@ $(document).ready(function() {
 
     $("#deleteItem").click(function() {
 
-        let itemName = $("#ItemNameField").val();
+        let itemId = $("#ItemCodeField").val();
     
         $.ajax({
-            url: `http://localhost:8080/POS_BackEnd__JavaEE/Item?name=${encodeURIComponent(itemName)}`,
+            url: "http://localhost:8080/POS_BackEnd/api/v1/item/" + itemId,
             type: "DELETE",
             success: (res) => {
                 console.log("Delete Response:", JSON.stringify(res));
@@ -94,7 +94,7 @@ $(document).ready(function() {
 
     function getAllItems() {
         $.ajax({
-            url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
+            url: "http://localhost:8080/POS_BackEnd/api/v1/item",
             type: "GET",
             headers: {"Content-Type": "application/json"},
             success: (res) => {
@@ -128,9 +128,10 @@ $(document).ready(function() {
     
 
     $("#clearItem").click(function () {
-        let itemName = $("#ItemNameField").val("");
-        let itemQTY = $("#ItemQTYField").val("");
-        let itemPrice = $("#ItemPriceField").val("");
+        $("#ItemNameField").val("");
+        $("#ItemQTYField").val("");
+        $("#ItemPriceField").val("");
+        $("#ItemCodeField").val("");
     });
 
 });
