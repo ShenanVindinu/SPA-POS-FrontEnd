@@ -27,18 +27,7 @@ $(document).ready(function () {
             headers: {"Content-Type": "application/json"},
             success: (res) => {
                 console.log(JSON.stringify(res));
-                $.ajax({
-                    url: "http://localhost:8080/POS_BackEnd/api/v1/customer",
-                    type: "GET",
-                    headers: {"Content-Type": "application/json"},
-                    success: (res) => {
-                        console.log(JSON.stringify(res));
-                        populateCustomerTable(res);
-                    },
-                    error: (res) => {
-                        console.error(res);
-                    }            
-                });
+                getAllCustomers();
             },
             error: (res) => {
                 console.error(res);
@@ -55,18 +44,7 @@ $(document).ready(function () {
             type: "DELETE",
             success: (res) => {
                 console.log("Delete Response:", JSON.stringify(res));
-                $.ajax({
-                    url: "http://localhost:8080/POS_BackEnd/api/v1/customer",
-                    type: "GET",
-                    headers: {"Content-Type": "application/json"},
-                    success: (res) => {
-                        console.log("Customer List:", JSON.stringify(res));
-                        populateCustomerTable(res);
-                    },
-                    error: (res) => {
-                        console.error("Error fetching customer list:", res);
-                    }            
-                });
+                getAllCustomers();
             },
             error: (res) => {
                 console.log("Error during deletion:", JSON.stringify(res));
@@ -103,24 +81,28 @@ $(document).ready(function () {
             headers: {"Content-Type": "application/json"},
             success: (res) => {
                 console.log('PUT Success:',JSON.stringify(res));
-                $.ajax({
-                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Customer",
-                    type: "GET",
-                    headers: {"Content-Type": "application/json"},
-                    success: (res) => {
-                        console.log(JSON.stringify(res));
-                        populateCustomerTable(res);
-                    },
-                    error: (res) => {
-                        console.error(res);
-                    }            
-                });
+                getAllCustomers();
             },
             error: (res) => {
                 console.error(res);
             }            
         });
     });
+
+    function getAllCustomers() {
+        $.ajax({
+            url: "http://localhost:8080/POS_BackEnd/api/v1/customer",
+            type: "GET",
+            headers: {"Content-Type": "application/json"},
+            success: (res) => {
+                console.log("Customer List:", JSON.stringify(res));
+                populateCustomerTable(res);
+            },
+            error: (res) => {
+                console.error("Error fetching customer list:", res);
+            }            
+        });
+    }
     
     function populateCustomerTable(customers) {
         const $tableBody = $('#customerTableBody');
