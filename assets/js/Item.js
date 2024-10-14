@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    getAllItems();
+
     $("#ItemSave").click(function() {
 
         let itemName = $("#ItemNameField").val();
@@ -21,24 +23,13 @@ $(document).ready(function() {
         console.log(itemJson);
 
         $.ajax({
-            url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
+            url: "http://localhost:8080/POS_BackEnd/api/v1/item",
             type: "POST",
             data: itemJson,
             Headers: {"Content-Type":"application/json"},
             success: (res) => {
                 console.log(JSON.stringify(res));
-                $.ajax({
-                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
-                    type: "GET",
-                    headers: {"Content-Type": "application/json"},
-                    success: (res) => {
-                        console.log(JSON.stringify(res));
-                        populateItemTable(res);
-                    },
-                    error: (res) => {
-                        console.error(res);
-                    }            
-                });
+                getAllItems();
             },
             error: (res) => {
                 console.log(res);
@@ -57,18 +48,7 @@ $(document).ready(function() {
             type: "DELETE",
             success: (res) => {
                 console.log("Delete Response:", JSON.stringify(res));
-                $.ajax({
-                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
-                    type: "GET",
-                    headers: {"Content-Type": "application/json"},
-                    success: (res) => {
-                        console.log(JSON.stringify(res));
-                        populateItemTable(res);
-                    },
-                    error: (res) => {
-                        console.error(res);
-                    }            
-                });
+                getAllItems();
             },
             error: (res) => {
                 console.log("Error during deletion:", JSON.stringify(res));
@@ -104,24 +84,28 @@ $(document).ready(function() {
             headers: {"Content-Type": "application/json"},
             success: (res) => {
                 console.log('PUT Success:',JSON.stringify(res));
-                $.ajax({
-                    url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
-                    type: "GET",
-                    headers: {"Content-Type": "application/json"},
-                    success: (res) => {
-                        console.log(JSON.stringify(res));
-                        populateItemTable(res);
-                    },
-                    error: (res) => {
-                        console.error(res);
-                    }            
-                });
+                getAllItems();
             },
             error: (res) => {
                 console.error(res);
             }            
         });
     });
+
+    function getAllItems() {
+        $.ajax({
+            url: "http://localhost:8080/POS_BackEnd__JavaEE/Item",
+            type: "GET",
+            headers: {"Content-Type": "application/json"},
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                populateItemTable(res);
+            },
+            error: (res) => {
+                console.error(res);
+            }            
+        });
+    }
 
     function populateItemTable(items) {
         const $tableBody = $('#ItemTableBody');
