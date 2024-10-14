@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    getAllCustomers();
+
     $("#CusSaveBt").click(function () {
 
         let CusName = $("#CustomerNameField").val();
