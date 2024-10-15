@@ -160,7 +160,45 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('#PlaceOrderBtn').on('click', function(event) {
-        
+
+        let orderData = {
+            id: $("#OrderID").val(),
+            date: $("#OrderDateField").val(),
+            customerId: $("#CustomerIDField2").val(), 
+            customerName: $("#CustomerNameField2").val(),
+            customerSalary: $("#CustomerSalaryField2").val(),
+            customerAddress: $("#CustomerAddressField2").val(),
+            orderItems: []
+        };
+    
+        $('#OrderTableBodyID tr').each(function() {
+            let itemCode = $(this).find('td:nth-child(1)').text();
+            let itemName = $(this).find('td:nth-child(2)').text();
+            let price = parseFloat($(this).find('td:nth-child(3)').text());
+            let quantity = parseInt($(this).find('td:nth-child(4)').text());
+            let total = parseFloat($(this).find('td:nth-child(5)').text());
+    
+            orderData.orderItems.push({
+                itemId: itemCode,
+                itemName: itemName,
+                itemPrice: price.toString(),
+                orderQTY: quantity.toString(),
+                total: total.toString()
+            });
+        });
+    
+        $.ajax({
+            url: 'http://localhost:8080/POS_BackEnd/api/v1/order', 
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(orderData),
+            success: function(response) {
+                console.log('Order saved successfully:', response);
+            },
+            error: function(error) {
+                console.error('Error saving order:', error);
+            }
+        });
     });
     
 });
