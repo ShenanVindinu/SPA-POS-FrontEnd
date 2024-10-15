@@ -81,3 +81,43 @@ $(document).ready(function() {
         $('#QtyOnHandField').val(qtyOnHand);   // QTY on Hand
     });
 });
+
+$(document).ready(function() {
+
+
+    
+    $('#AddToCart').on('click', function() {
+        
+        var itemCode = $('#ItemCodeField2').val();
+        var itemName = $('#ItemNameField2').val();
+        var itemPrice = parseFloat($('#ItemPriceField2').val());  // Convert to float for calculations
+        var orderQty = parseInt($('#OrderQtyField').val());
+
+        
+        var total = itemPrice * orderQty;
+
+        // Check if all fields are filled before adding to the cart
+        if (itemCode && itemName && itemPrice && orderQty) {
+            var newRow = `<tr>
+                            <td>${itemCode}</td>
+                            <td>${itemName}</td>
+                            <td>${itemPrice.toFixed(2)}</td>
+                            <td>${orderQty}</td>
+                            <td>${total.toFixed(2)}</td>
+                          </tr>`;
+
+            
+            $('#OrderTableBodyID').append(newRow);
+
+            //clear the input fields after adding the item to the cart
+            $('#ItemCodeField2').val('');
+            $('#ItemNameField2').val('');
+            $('#ItemPriceField2').val('');
+            $('#QtyOnHandField').val('');
+            $('#OrderQtyField').val('');
+        } else {
+            alert('Please fill in all fields before adding to the cart.');
+        }
+    });
+});
+
