@@ -1,4 +1,14 @@
 $(document).ready(function() {
+
+    setDate(); 
+    function setDate() {
+        var today = new Date().toISOString().split('T')[0];
+        $('#OrderDateField').val(today);
+    }
+
+});
+
+$(document).ready(function() {
     // Load all customer IDs into the dropdown
     $.ajax({
         url: 'http://localhost:8080/POS_BackEnd/api/v1/customer',  // Your API endpoint to get all customers
