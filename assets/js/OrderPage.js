@@ -87,6 +87,8 @@ $(document).ready(function() {
 
     
     $('#AddToCart').on('click', function() {
+
+        var cartTotal = 0;
         
         var itemCode = $('#ItemCodeField2').val();
         var itemName = $('#ItemNameField2').val();
@@ -108,6 +110,12 @@ $(document).ready(function() {
 
             
             $('#OrderTableBodyID').append(newRow);
+
+            // Update the total of the cart
+            cartTotal += total;
+
+            // Set the new total value in the #totalText element
+            $('#totalText').text('Total : Rs.' + cartTotal.toFixed(2));
 
             //clear the input fields after adding the item to the cart
             $('#ItemCodeField2').val('');
