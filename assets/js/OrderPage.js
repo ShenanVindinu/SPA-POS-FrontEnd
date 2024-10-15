@@ -93,24 +93,23 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    var cartTotal = 0;
+    var subTotal = 0;
 
-
-    
     $('#AddToCart').on('click', function() {
-
-        var cartTotal = 0;
         
         var itemCode = $('#ItemCodeField2').val();
         var itemName = $('#ItemNameField2').val();
         var itemPrice = parseFloat($('#ItemPriceField2').val());  // Convert to float for calculations
-        var orderQty = parseInt($('#OrderQtyField').val());
+        var orderQty = parseInt($('#OrderQtyField').val());  // Order quantity field (you'll need to add this input)
 
         
         var total = itemPrice * orderQty;
 
-        // Check if all fields are filled before adding to the cart
+        
         if (itemCode && itemName && itemPrice && orderQty) {
-            var newRow = `<tr>
+            
+            var newRow = `<tr data-item-code="${itemCode}">
                             <td>${itemCode}</td>
                             <td>${itemName}</td>
                             <td>${itemPrice.toFixed(2)}</td>
@@ -121,21 +120,42 @@ $(document).ready(function() {
             
             $('#OrderTableBodyID').append(newRow);
 
-            // Update the total of the cart
+            
             cartTotal += total;
+            subTotal += total;
 
-            // Set the new total value in the #totalText element
+            
             $('#totalText').text('Total : Rs.' + cartTotal.toFixed(2));
+            $('#SubTotalText').text('Sub Total : Rs.' + subTotal.toFixed(2));
 
-            //clear the input fields after adding the item to the cart
+            
             $('#ItemCodeField2').val('');
             $('#ItemNameField2').val('');
             $('#ItemPriceField2').val('');
-            $('#QtyOnHandField').val('');
             $('#OrderQtyField').val('');
         } else {
             alert('Please fill in all fields before adding to the cart.');
         }
     });
+
+    
+    $('#CashInputField, #DiscountInputField').on('input', function() {
+        
+        var cash = parseFloat($('#CashInputField').val()) || 0;  // Default to 0 if empty
+        var discount = parseFloat($('#DiscountInputField').val()) || 0;  // Default to 0 if empty
+
+        
+        var subTotalAfterDiscount = subTotal - discount;
+
+        
+        $('#SubTotalText').text('Sub Total : Rs.' + subTotalAfterDiscount.toFixed(2));
+
+        
+        var balance = cash - subTotalAfterDiscount;
+
+        
+        $('#BalanceInputField').val(balance.toFixed(2));
+    });
 });
+
 
