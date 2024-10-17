@@ -200,12 +200,29 @@ $(document).ready(function() {
             success: function(response) {
                 console.log('Order saved successfully:', response);
                 alert("Order Saved Successfully")
+                clearOrderPage();
             },
             error: function(error) {
                 console.error('Error saving order:', error);
             }
         });
-    });    
+    });
+    
+    function clearOrderPage() {
+        $("#OrderID").val("");
+        $("#OrderDateField").val("");
+        $("#CustomerIDField2").val("");
+        $("#CustomerNameField2").val("");
+        $("#CustomerSalaryField2").val("");
+        $("#CustomerAddressField2").val("");
+        $("#QtyOnHandField").val("");
+        $("#totalText").text("Total : Rs. 0");
+        $("#SubTotalText").text("Sub Total : Rs. 0");
+        $("#CashInputField").val("");
+        $("#DiscountInputField").val("");
+        $("#BalanceInputField").val("");
+        $("#OrderTableBodyID").empty();
+    }
     
 });
 
