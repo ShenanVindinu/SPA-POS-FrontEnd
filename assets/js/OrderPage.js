@@ -160,17 +160,11 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('#PlaceOrderBtn').on('click', function(event) {
-
         let orderData = {
-            id: $("#OrderID").val(),
-            date: $("#OrderDateField").val(),
-            customerId: $("#CustomerIDField2").val(), 
-            customerName: $("#CustomerNameField2").val(),
-            customerSalary: $("#CustomerSalaryField2").val(),
-            customerAddress: $("#CustomerAddressField2").val(),
             orderItems: []
         };
     
+        // Collecting order items data
         $('#OrderTableBodyID tr').each(function() {
             let itemCode = $(this).find('td:nth-child(1)').text();
             let itemName = $(this).find('td:nth-child(2)').text();
@@ -187,8 +181,19 @@ $(document).ready(function() {
             });
         });
     
+        
+        let queryString = $.param({
+            id: $("#OrderID").val(),
+            date: $("#OrderDateField").val(),
+            customerId: $("#CustomerIDField2").val(),
+            customerName: $("#CustomerNameField2").val(),
+            customerSalary: $("#CustomerSalaryField2").val(),
+            customerAddress: $("#CustomerAddressField2").val()
+        });
+    
+        
         $.ajax({
-            url: 'http://localhost:8080/POS_BackEnd/api/v1/order', 
+            url: 'http://localhost:8080/POS_BackEnd/api/v1/order?' + queryString, 
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(orderData),
@@ -199,7 +204,7 @@ $(document).ready(function() {
                 console.error('Error saving order:', error);
             }
         });
-    });
+    });    
     
 });
 
