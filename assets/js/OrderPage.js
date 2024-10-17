@@ -199,6 +199,7 @@ $(document).ready(function() {
             data: JSON.stringify(orderData),
             success: function(response) {
                 console.log('Order saved successfully:', response);
+                alert("Order Saved Successfully")
             },
             error: function(error) {
                 console.error('Error saving order:', error);
