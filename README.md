@@ -8,9 +8,15 @@ This web API project is designed to manage customers, items, and orders. The API
 * Item Management: Create, update, delete, and retrieve item data.
 * Order Management: Place an order based on selected customer and item data, and calculate the subtotal of the ordered items.
 
-## Setup (BackEnd)
+## Setup JAVA EE (BackEnd)
 ```bash
 https://github.com/ShenanVindinu/POS-BackEnd--JavaEE.git```
+cd POS-BackEnd--JavaEE
+```
+
+## Setup Spring (BackEnd)
+```bash
+https://github.com/ShenanVindinu/POS-BackEnd--Spring.git```
 cd POS-BackEnd--JavaEE
 ```
 
