@@ -1,3 +1,5 @@
+### Please Use " POS-FrontEnd--for--Spring "  Branch before using the Spring core back End.
+
 ## Web API for Customer and Item Management
 This web API project is designed to manage customers, items, and orders. The API allows creating, updating, and deleting customer and item records. It also includes functionality for placing orders and calculating the subtotal of items in the cart.
 
